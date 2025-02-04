@@ -1,5 +1,6 @@
 from tkinter import *
-from modules.gameState import encounter, SleepAction, rows
+from modules.gameState import encounter, rows
+from modules.actions import SleepAction
 
 def cancel_action(bt, i, action):
     action.cancel(encounter, i)
@@ -13,6 +14,7 @@ def commit_action(bt, i, action, window):
 
     for c in range(rows):
         bt[c].configure(state=["normal"])
+
 def openActionWindow(bt, i, rows,):
     # Toplevel object which will
     # be treated as a new window
