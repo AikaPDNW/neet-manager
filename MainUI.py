@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter.ttk import *
 
-from modules.gameState import energy, encounter, rows, init_state
+from modules.gameState import energy, date, encounter, rows, init_state
 from modules.actionWindowUI import openActionWindow
 
 master = Tk()
@@ -24,6 +24,9 @@ def maintable():
 
         energyLabel = Label(master, textvariable=energy[i])  #
         energyLabel.grid(row=i % 40, column=(i // 40) * 6 + 2, sticky=W, pady=2)  #
+
+        dateLabel = Label(master, textvariable=date[i])  #
+        dateLabel.grid(row=i % 40, column=(i // 40) * 6 + 3, sticky=W, pady=2)  #
 
 
 startBt = Button(master, text="Start", command=maintable)
