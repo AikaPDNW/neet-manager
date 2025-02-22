@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter.ttk import *
 
-from modules.gameState import energy, date, encounter, rows, init_state
+from modules.gameState import tsumm, date, tdelta, ensumm, msumm, hsumm, rows, init_state
 from modules.actionWindowUI import openActionWindow
 
 master = Tk()
@@ -19,14 +19,23 @@ def maintable():
         tempBt.grid(row=i % 40, column=(i // 40) * 6, sticky=W, pady=2)
         actBt.append(tempBt)
 
-        encounterLb = Label(master, textvariable=encounter[i])  # used textvariable instead
-        encounterLb.grid(row=i % 40, column=(i // 40) * 6 + 1, sticky=W, pady=2)
+        tdeltaLabel = Label(master, textvariable=tdelta[i])  # used textvariable instead
+        tdeltaLabel.grid(row=i % 40, column=(i // 40) * 6 + 1, sticky=W, pady=2)
 
-        energyLabel = Label(master, textvariable=energy[i])  #
-        energyLabel.grid(row=i % 40, column=(i // 40) * 6 + 2, sticky=W, pady=2)  #
+        tsummLabel = Label(master, textvariable=tsumm[i])  #
+        tsummLabel.grid(row=i % 40, column=(i // 40) * 6 + 2, sticky=W, pady=2)  #
 
         dateLabel = Label(master, textvariable=date[i])  #
         dateLabel.grid(row=i % 40, column=(i // 40) * 6 + 3, sticky=W, pady=2)  #
+
+        energyLabel = Label(master, textvariable=ensumm[i])  #
+        energyLabel.grid(row=i % 40, column=(i // 40) * 6 + 4, sticky=W, pady=2)  #
+
+        moneyLabel = Label(master, textvariable=msumm[i])  #
+        moneyLabel.grid(row=i % 40, column=(i // 40) * 6 + 5, sticky=W, pady=2)  #
+
+        happinessLabel = Label(master, textvariable=hsumm[i])  #
+        happinessLabel.grid(row=i % 40, column=(i // 40) * 6 + 6, sticky=W, pady=2)  #
 
 
 startBt = Button(master, text="Start", command=maintable)

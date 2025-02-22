@@ -1,14 +1,14 @@
 from tkinter import *
-from modules.gameState import encounter, rows
+from modules.gameState import tdelta, rows
 from modules.actions import SleepAction
 
 def cancel_action(bt, i, action):
-    action.cancel(encounter, i)
+    action.cancel(tdelta, i)
     bt[i].configure(text=action.getLabel(i), command=lambda idx=i: openActionWindow(bt, idx, rows))
 
 
 def commit_action(bt, i, action, window):
-    action.action(encounter, i)
+    action.action(tdelta, i)
     bt[i].configure(text=action.getLabel(i), command=lambda idx=i: cancel_action(bt, i, action))
     window.destroy()
 
