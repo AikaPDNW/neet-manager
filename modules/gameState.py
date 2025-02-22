@@ -1,37 +1,47 @@
 from collections import defaultdict
 from tkinter import IntVar
+import datetime
+from datetime import timedelta
 
 encounter = list()
-energy = list()  #
+time = list()  #
 acts = defaultdict(lambda: None)
+date = list()
 
 # Action limit
 rows = 100
+date0 = datetime.datetime(2022,12,25,11,34)
 
-
-def make_updater(i, m, e):
+def make_updater(i, en, t,):
     def update(*args):
         if i > 0:
-            e[i].set(e[i - 1].get() + m[i].get())
+            t[i].set(date.hour[i - 1] + en[i].get())
+            date[i] = date[i-1] + timedelta(hours = en[i].get())
         else:
-            e[i].set(m[i].get())
+            t[i].set(date0.hour + en[i].get())
+            date[i] = date[i] + timedelta(hours=en[i].get())
+
 
     return update
 
 
-def make_updater_e(i, m, e):
+def make_updater_t(i, en, t):
     def update(*args):
-        if i < len(e) - 1:
-            e[i + 1].set(e[i].get() + m[i + 1].get())
+        if i < len(t) - 1:
+            t[i + 1].set(date[i] + en[i + 1].get())
+            date[i+1] = date[i] + timedelta(hours=en[i+1].get())
 
     return update
+
 
 
 def init_state():
     for i in range(rows):
         # create an instance of IntVar() and append to list m
         encounter.append(IntVar())
-        energy.append(IntVar())  #
+        time.append(IntVar())  #
+        date.append(datetime.datetime())
 
-        encounter[i].trace_add("write", make_updater(i, encounter, energy))
-        energy[i].trace_add("write", make_updater_e(i, encounter, energy))
+
+        encounter[i].trace_add("write", make_updater(i, encounter, time))
+        time[i].trace_add("write", make_updater_t(i, encounter, time))
