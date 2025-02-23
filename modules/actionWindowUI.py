@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import IntVar
 from modules.gameState import tdelta, rows
 from modules.actions import SleepAction
 
@@ -30,6 +31,36 @@ def openActionWindow(bt, i, rows,):
         bt[c].configure(state=["disabled"])
 
     bt[i].configure(state=["active"])
-    for r in range(6):
-        btSle = Button(ActionWindow, text="Sleep", command=lambda idx=i: commit_action(bt, idx, SleepAction, ActionWindow))
-        btSle.grid(row=r, column=1, sticky=W, pady=2)
+
+    sleepLb = Label(ActionWindow, text = "Sleep")
+    sleepLb.grid(row=0, column=0, sticky=W, pady=2)
+
+    sdelta = IntVar()
+
+    sleepScale = Scale(ActionWindow, orient=HORIZONTAL, length=200, from_=1.0, to=8.0, variable = sdelta)
+    sleepScale.grid(row=1, column=0, sticky=W, pady=2)
+
+    cleanLb = Label(ActionWindow, text="Sleep")
+    cleanLb.grid(row=3, column=0, sticky=W, pady=2)
+
+    languages = ["Python", "C#", "Java", "JavaScript"]
+    cleanCombobox = Combobox(values=languages)
+    cleanCombobox.grid(row=4, column=0, sticky=W, pady=2)
+
+    cookLb = Label(ActionWindow, text="Sleep")
+    cookLb.grid(row=6, column=0, sticky=W, pady=2)
+
+    workLb = Label(ActionWindow, text="Sleep")
+    workLb.grid(row=9, column=0, sticky=W, pady=2)
+
+    studyLb = Label(ActionWindow, text="Sleep")
+    studyLb.grid(row=12, column=0, sticky=W, pady=2)
+
+    gymLb = Label(ActionWindow, text="Sleep")
+    gymLb.grid(row=15, column=0, sticky=W, pady=2)
+
+    socialLb = Label(ActionWindow, text="Sleep")
+    socialLb.grid(row=18, column=0, sticky=W, pady=2)
+
+    hobbyLb = Label(ActionWindow, text="Sleep")
+    hobbyLb.grid(row=21, column=0, sticky=W, pady=2)
