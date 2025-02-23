@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import IntVar
+from tkinter import IntVar,StringVar
 from modules.gameState import tdelta, rows
 from modules.actions import SleepAction
 
@@ -43,9 +43,11 @@ def openActionWindow(bt, i, rows,):
     cleanLb = Label(ActionWindow, text="Sleep")
     cleanLb.grid(row=3, column=0, sticky=W, pady=2)
 
-    languages = ["Python", "C#", "Java", "JavaScript"]
-    cleanCombobox = Combobox(values=languages)
+    n = StringVar()
+    cleanCombobox = Combobox(ActionWindow, textvariable=n)
+    cleanCombobox['values'] = ('a','b')
     cleanCombobox.grid(row=4, column=0, sticky=W, pady=2)
+    cleanCombobox.current(1)
 
     cookLb = Label(ActionWindow, text="Sleep")
     cookLb.grid(row=6, column=0, sticky=W, pady=2)
