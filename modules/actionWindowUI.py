@@ -37,9 +37,10 @@ def openActionWindow(bt, i, rows,):
     sleepLb.grid(row=0, column=0, sticky=W, pady=2)
 
     sdelta = IntVar()
-
-    sleepScale = Scale(ActionWindow, orient=HORIZONTAL, length=200, from_=1.0, to=8.0, variable = sdelta)
+    sleepScale = Scale(ActionWindow, orient=HORIZONTAL, length=200, from_=1.0, to=8.0, command = )
     sleepScale.grid(row=1, column=0, sticky=W, pady=2)
+
+
 
     cleanLb = Label(ActionWindow, text="Clean")
     cleanLb.grid(row=3, column=0, sticky=W, pady=2)

@@ -16,26 +16,26 @@ def maintable():
     for i in range(rows):
         tempBt = Button(master, text="Act", command=lambda idx=i: openActionWindow(actBt,
                                                                                                   idx, rows))  # assign the lambda to command
-        tempBt.grid(row=i % 40, column=(i // 40) * 6, sticky=W, pady=2)
+        tempBt.grid(row=i % 40, column=(i // 40) * 7, sticky=W, pady=2)
         actBt.append(tempBt)
 
         tdeltaLabel = Label(master, textvariable=tdelta[i])  # used textvariable instead
-        tdeltaLabel.grid(row=i % 40, column=(i // 40) * 6 + 1, sticky=W, pady=2)
+        tdeltaLabel.grid(row=i % 40, column=(i // 40) * 7 + 1, sticky=W, pady=2)
 
         tsummLabel = Label(master, textvariable=tsumm[i])  #
-        tsummLabel.grid(row=i % 40, column=(i // 40) * 6 + 2, sticky=W, pady=2)  #
+        tsummLabel.grid(row=i % 40, column=(i // 40) * 7 + 2, sticky=W, pady=2)  #
 
         dateLabel = Label(master, textvariable=date[i])  #
-        dateLabel.grid(row=i % 40, column=(i // 40) * 6 + 3, sticky=W, pady=2)  #
+        dateLabel.grid(row=i % 40, column=(i // 40) * 7 + 3, sticky=W, pady=2)  #
 
         energyLabel = Label(master, textvariable=ensumm[i])  #
-        energyLabel.grid(row=i % 40, column=(i // 40) * 6 + 4, sticky=W, pady=2)  #
+        energyLabel.grid(row=i % 40, column=(i // 40) * 7 + 4, sticky=W, pady=2)  #
 
         moneyLabel = Label(master, textvariable=msumm[i])  #
-        moneyLabel.grid(row=i % 40, column=(i // 40) * 6 + 5, sticky=W, pady=2)  #
+        moneyLabel.grid(row=i % 40, column=(i // 40) * 7 + 5, sticky=W, pady=2)  #
 
         happinessLabel = Label(master, textvariable=hsumm[i])  #
-        happinessLabel.grid(row=i % 40, column=(i // 40) * 6 + 6, sticky=W, pady=2)  #
+        happinessLabel.grid(row=i % 40, column=(i // 40) * 7 + 6, sticky=W, pady=2)  #
 
 
 startBt = Button(master, text="Start", command=maintable)
