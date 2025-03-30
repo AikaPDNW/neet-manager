@@ -33,14 +33,15 @@ def openActionWindow(bt, i, rows,):
 
     bt[i].configure(state=["active"])
 
+    applyBt = Button(ActionWindow, text="Apply Changes", command=lambda idx=i: commit_action(bt, idx, SleepAction, ActionWindow))
+    applyBt.grid(row=0, column=1, sticky=W, pady=2)
+
     sleepLb = Label(ActionWindow, text = "Sleep")
     sleepLb.grid(row=0, column=0, sticky=W, pady=2)
 
     sdelta = IntVar()
-    sleepScale = Scale(ActionWindow, orient=HORIZONTAL, length=200, from_=1.0, to=8.0, command = )
+    sleepScale = Scale(ActionWindow, orient=HORIZONTAL, length=200, from_=0.0, to=8.0, variable = sdelta)
     sleepScale.grid(row=1, column=0, sticky=W, pady=2)
-
-
 
     cleanLb = Label(ActionWindow, text="Clean")
     cleanLb.grid(row=3, column=0, sticky=W, pady=2)
