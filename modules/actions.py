@@ -8,6 +8,12 @@ class SleepAction:
         # update values
 
     @staticmethod
+    def sleep_action(tdelta, hdelta, i):
+        tdelta[i].set(tdelta[i].get() + 1)
+        acts[i] = 'Sleep'
+        # update values
+
+    @staticmethod
     def cancel(m, i):
         m[i].set(m[i].get() - 1)
         acts[i] = None

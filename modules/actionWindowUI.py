@@ -9,8 +9,8 @@ def cancel_action(bt, i, action):
     bt[i].configure(text=action.getLabel(i), command=lambda idx=i: openActionWindow(bt, idx, rows))
 
 
-def commit_action(bt, i, action, window):
-    action.action(tdelta, i)
+def commit_action(bt, i, delta, action, window):
+    action.sleep_action(tdelta, delta, i)
     bt[i].configure(text=action.getLabel(i), command=lambda idx=i: cancel_action(bt, i, action))
     window.destroy()
 
@@ -33,11 +33,14 @@ def openActionWindow(bt, i, rows,):
 
     bt[i].configure(state=["active"])
 
+    applyBt = Button(ActionWindow, text="Apply Changes", command =lambda idx=i: commit_action(bt, i, delta, action, ActionWindow))
+    applyBt.grid(row=0, column=1, sticky=W, pady=2)
+
     sleepLb = Label(ActionWindow, text = "Sleep")
     sleepLb.grid(row=0, column=0, sticky=W, pady=2)
 
     sdelta = IntVar()
-    sleepScale = Scale(ActionWindow, orient=HORIZONTAL, length=200, from_=1.0, to=8.0, command = )
+    sleepScale = Scale(ActionWindow, orient=HORIZONTAL, length=200, from_= 0.0, to=8.0, variable = sdelta)
     sleepScale.grid(row=1, column=0, sticky=W, pady=2)
 
 
