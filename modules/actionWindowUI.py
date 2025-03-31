@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import IntVar,StringVar
-from modules.gameState import tdelta, rows
+from modules.gameState import tdelta, mdelta, ensumm, rows
 from modules.actions import SleepAction
 
 def cancel_action(bt, i, action):
@@ -9,8 +9,8 @@ def cancel_action(bt, i, action):
     bt[i].configure(text=action.getLabel(i), command=lambda idx=i: openActionWindow(bt, idx, rows))
 
 
-def commit_action(bt, i, action, window):
-    action.action(tdelta, i)
+def commit_action(bt, i, sdelta, action, window):
+    action.sleep_action(tdelta, sdelta, ensumm, i)
     bt[i].configure(text=action.getLabel(i), command=lambda idx=i: cancel_action(bt, i, action))
     window.destroy()
 
@@ -33,7 +33,7 @@ def openActionWindow(bt, i, rows,):
 
     bt[i].configure(state=["active"])
 
-    applyBt = Button(ActionWindow, text="Apply Changes", command=lambda idx=i: commit_action(bt, idx, SleepAction, ActionWindow))
+    applyBt = Button(ActionWindow, text="Apply Changes", command=lambda idx=i: commit_action(bt, idx, sdelta, SleepAction, ActionWindow))
     applyBt.grid(row=0, column=1, sticky=W, pady=2)
 
     sleepLb = Label(ActionWindow, text = "Sleep")
