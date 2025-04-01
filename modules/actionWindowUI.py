@@ -1,16 +1,29 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import IntVar,StringVar
-from modules.gameState import tdelta, mdelta, ensumm, rows
-from modules.actions import SleepAction
+from modules.gameState import tdelta, hsumm, ensumm, rows
+from modules.actions import Actions
+
+cleanActs = ['None', 'Washing the dishes', 'Vacuuming the room']
+cookActs = ['None', 'Struggle meal', 'Fancy meal']
+workActs = ['None', 'Full shift', "Half shift"]
+studyActs = ['None', 'Languages', 'Coding']
+gymActs = ['None', 'Intense session', 'Chill session']
+socialActs = ['None', 'Playing online games', 'Playing board games', 'Bar']
+hobbyActs = ['None', 'Painting miniatures', 'Playing single games']
 
 def cancel_action(bt, i, action):
     action.cancel(tdelta, i)
     bt[i].configure(text=action.getLabel(i), command=lambda idx=i: openActionWindow(bt, idx, rows))
 
 
-def commit_action(bt, i, sdelta, action, window):
-    action.sleep_action(tdelta, sdelta, ensumm, i)
+def commit_action(bt, i, sdelta, cleanActs_var, cleanActs, cookActs_var, cookActs, action, window):
+    if sdelta.get() > 0:
+        action.sleep_action(tdelta, sdelta, ensumm, i)
+    elif cleanActs_var.get() != 'None':
+        action.clean_action(tdelta, cleanActs_var, cleanActs, ensumm, i)
+    elif cookActs_var.get() != 'None':
+        action.cook_action(tdelta, cookActs_var, cookActs, ensumm, hsumm, i)
     bt[i].configure(text=action.getLabel(i), command=lambda idx=i: cancel_action(bt, i, action))
     window.destroy()
 
@@ -33,7 +46,7 @@ def openActionWindow(bt, i, rows,):
 
     bt[i].configure(state=["active"])
 
-    applyBt = Button(ActionWindow, text="Apply Changes", command=lambda idx=i: commit_action(bt, idx, sdelta, SleepAction, ActionWindow))
+    applyBt = Button(ActionWindow, text="Apply Changes", command=lambda idx=i: commit_action(bt, idx, sdelta, cleanActs_var, cleanActs, cookActs_var, cookActs, Actions, ActionWindow))
     applyBt.grid(row=0, column=1, sticky=W, pady=2)
 
     sleepLb = Label(ActionWindow, text = "Sleep")
@@ -46,17 +59,15 @@ def openActionWindow(bt, i, rows,):
     cleanLb = Label(ActionWindow, text="Clean")
     cleanLb.grid(row=3, column=0, sticky=W, pady=2)
 
-    n1 = StringVar()
-    cleanCombobox = ttk.Combobox(ActionWindow, textvariable=n1)
-    cleanCombobox['values'] = ('a','b')
+    cleanActs_var = StringVar(value=cleanActs[0])
+    cleanCombobox = ttk.Combobox(ActionWindow, textvariable=cleanActs_var, values = cleanActs, state ='readonly')
     cleanCombobox.grid(row=4, column=0, sticky=W, pady=2)
 
     cookLb = Label(ActionWindow, text="Cook")
     cookLb.grid(row=6, column=0, sticky=W, pady=2)
 
-    n2 = StringVar()
-    cookCombobox = ttk.Combobox(ActionWindow, textvariable=n2)
-    cookCombobox['values'] = ('a', 'b')
+    cookActs_var = StringVar(value=cookActs[0])
+    cookCombobox = ttk.Combobox(ActionWindow, textvariable=cookActs_var, values=cookActs, state='readonly')
     cookCombobox.grid(row=7, column=0, sticky=W, pady=2)
 
     workLb = Label(ActionWindow, text="Work")
